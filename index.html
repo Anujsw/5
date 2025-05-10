@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bubble Sort in JavaScript (5 Blocks)</title>
+  <style>
+    .block {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 5px;
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-family: Arial;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">🔁 Bubble Sort Visualizer (JavaScript)</h2>
+  <div style="text-align:center;">
+    <div id="array"></div>
+    <button onclick="startSort()">▶ Start Sort</button>
+  </div>
+
+  <script>
+    const values = [5, 2, 4, 1, 3];
+    const arrayDiv = document.getElementById('array');
+
+    function displayArray(arr) {
+      arrayDiv.innerHTML = '';
+      arr.forEach(val => {
+        const block = document.createElement('div');
+        block.className = 'block';
+        block.textContent = val;
+        arrayDiv.appendChild(block);
+      });
+    }
+
+    displayArray(values);
+
+    function startSort() {
+      let arr = [...values];
+      let delay = 0;
+
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+          if (arr[j] > arr[j + 1]) {
+            setTimeout(() => {
+              [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+              displayArray(arr);
+            }, delay);
+            delay += 1000;
+          }
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
